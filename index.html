@@ -78,13 +78,28 @@
 
   /* ---------- 4. TRABALHOS ---------- */
   .obra{padding:4.6rem 0;border-top:1px solid var(--line);
-      display:grid;grid-template-columns:1.6fr 1fr;gap:2rem}
-  .obra:last-of-type{border-bottom:1px solid var(--line)}
+      display:grid;grid-template-columns:1.6fr 1fr;gap:2rem;
+      text-decoration:none;color:inherit;cursor:pointer;position:relative}
+  .trabalhos-list a.obra:last-of-type{border-bottom:1px solid var(--line)}
   .obra h3{font-family:var(--disp);font-weight:400;
-      font-size:clamp(1.7rem,3.2vw,2.5rem);margin-bottom:.9rem}
+      font-size:clamp(1.7rem,3.2vw,2.5rem);margin-bottom:.9rem;
+      transition:color .3s ease}
+  .obra .seta{display:inline-block;font-size:.7em;opacity:0;transform:translate(-6px,2px);
+      transition:opacity .3s ease,transform .3s ease}
+  .obra:hover h3{color:var(--amber)}
+  .obra:hover .seta{opacity:1;transform:translate(2px,2px)}
   .obra p{color:var(--muted);max-width:46ch}
   .obra .tag{font-size:.72rem;letter-spacing:.24em;text-transform:uppercase;
       color:var(--amber);justify-self:end;align-self:start;white-space:nowrap}
+
+  .cursor-preview{position:fixed;top:0;left:0;width:280px;height:190px;
+      pointer-events:none;z-index:60;border-radius:4px;overflow:hidden;
+      background-size:cover;background-position:center;
+      opacity:0;transform:translate(-50%,-50%) scale(.94);
+      transition:opacity .28s ease,transform .28s ease;
+      box-shadow:0 20px 50px rgba(0,0,0,.28)}
+  .cursor-preview.show{opacity:1;transform:translate(-50%,-50%) scale(1)}
+  @media (hover:none){.cursor-preview{display:none}}
 
   /* ---------- 5. MANIFESTO ---------- */
   .manifesto{background:#E7E4E8}
@@ -152,7 +167,7 @@
     <div class="eyebrow reveal">Campos de trabalho</div>
     <div class="campo reveal">
       <h3>Arquitetura</h3>
-      <p>O traço vira presença. Cada projeto tratado como obra — luz, proporção e silêncio, também na tela.</p>
+      <p>O traço vira presença. Cada projeto é tratado como obra, com luz, proporção e silêncio também na tela.</p>
     </div>
     <div class="campo reveal">
       <h3>Engenharia</h3>
@@ -169,22 +184,29 @@
 <section style="padding-top:0">
   <div class="wrap">
     <div class="eyebrow reveal">Trabalhos</div>
-    <div class="obra reveal">
-      <div>
-        <h3>Correta Arquitetura</h3>
-        <p>Identidade digital para um escritório de arquitetura — o portfólio apresentado com a mesma intenção dos projetos que ele guarda.</p>
-      </div>
-      <span class="tag">Arquitetura</span>
-    </div>
-    <div class="obra reveal">
-      <div>
-        <h3>Ibiraquera Home</h3>
-        <p>Um dia dentro da casa. A narrativa de uma residência à beira da lagoa, contada do amanhecer ao fim da tarde.</p>
-      </div>
-      <span class="tag">Imobiliária</span>
+    <div class="trabalhos-list">
+      <a class="obra reveal" href="https://corretaarquitetura.vercel.app/" target="_blank" rel="noopener"
+         data-preview="assets/preview-correta.jpg">
+        <div>
+          <h3>Correta Arquitetura <span class="seta">↗</span></h3>
+          <p>Identidade digital para um escritório de arquitetura. O portfólio apresentado com a mesma intenção dos projetos que ele guarda.</p>
+        </div>
+        <span class="tag">Arquitetura</span>
+      </a>
+      <a class="obra reveal" href="https://ibirav2-index-html-p8mdwl0n8-andersonaelio1-2927s-projects.vercel.app/" target="_blank" rel="noopener"
+         data-preview="assets/preview-ibiraquera.jpg">
+        <div>
+          <h3>Ibiraquera Home <span class="seta">↗</span></h3>
+          <p>Um dia dentro da casa. A narrativa de uma residência à beira da lagoa, contada do amanhecer ao fim da tarde.</p>
+        </div>
+        <span class="tag">Imobiliária</span>
+      </a>
     </div>
   </div>
 </section>
+
+<!-- prévia flutuante que segue o cursor (desktop) -->
+<div class="cursor-preview" id="cursorPreview" aria-hidden="true"></div>
 
 <!-- 5. MANIFESTO -->
 <section class="manifesto">
@@ -195,10 +217,10 @@
     </figure>
     <div>
     <div class="eyebrow reveal">O estúdio</div>
-    <p class="reveal">Todo projeto começa antes da tela — na escuta, no entendimento do que precisa existir.</p>
+    <p class="reveal">Todo projeto começa antes da tela, na escuta, no entendimento do que precisa existir.</p>
     <p class="reveal">Depois vem a estrutura: cada decisão de luz, tipo e ritmo com uma razão de ser.</p>
     <p class="reveal">No fim, o que se entrega não é um site. É a presença que o trabalho merece.</p>
-    <p class="assina reveal">Aliyan é o estúdio de Anderson Aelio — um jeito próprio de construir, nascido de quem aprendeu a fazer tudo de outro modo.</p>
+    <p class="assina reveal">Aliyan é o estúdio de Anderson Aelio, um jeito próprio de construir, nascido de quem aprendeu a fazer tudo de outro modo.</p>
     </div>
   </div>
 </section>
@@ -241,6 +263,22 @@
     if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
   }), {threshold:.18});
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // TRABALHOS: prévia da imagem seguindo o cursor (só em telas com hover real)
+  if (matchMedia('(hover:hover)').matches) {
+    const preview = document.getElementById('cursorPreview');
+    document.querySelectorAll('.obra[data-preview]').forEach(link => {
+      link.addEventListener('mouseenter', () => {
+        preview.style.backgroundImage = `url(${link.dataset.preview})`;
+        preview.classList.add('show');
+      });
+      link.addEventListener('mousemove', e => {
+        preview.style.left = e.clientX + 'px';
+        preview.style.top = e.clientY + 'px';
+      });
+      link.addEventListener('mouseleave', () => preview.classList.remove('show'));
+    });
+  }
 </script>
 </body>
 </html>
