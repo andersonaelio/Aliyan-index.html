@@ -101,6 +101,34 @@
   .cursor-preview.show{opacity:1;transform:translate(-50%,-50%) scale(1)}
   @media (hover:none){.cursor-preview{display:none}}
 
+  /* ---------- CASO (case study expandido) ---------- */
+  .caso{display:none;background:var(--hero-bg)}
+  .caso.open{display:block}
+  .caso-cover{position:relative;line-height:0}
+  .caso-cover img{width:100%;max-height:78vh;object-fit:cover;display:block}
+  .caso-cover::after{content:'';position:absolute;inset:0;
+      background:linear-gradient(to top,rgba(11,9,8,.82) 0%,rgba(11,9,8,.15) 45%,rgba(11,9,8,.05) 100%)}
+  .caso-cover figcaption{position:absolute;left:6vw;right:6vw;bottom:2.6rem;z-index:2}
+  .caso-cover h3{font-family:var(--disp);font-weight:300;color:#F5EFE4;
+      font-size:clamp(2rem,5vw,3.6rem);margin:.6rem 0 .5rem}
+  .caso-cover p{color:#D8CBB0;font-size:1.05rem;margin-bottom:1.2rem}
+  .caso-link{color:#F5EFE4;font-size:.8rem;letter-spacing:.16em;text-transform:uppercase;
+      text-decoration:none;border-bottom:1px solid rgba(245,239,228,.4);padding-bottom:.2rem}
+
+  .caso-blocos{padding:12vh 0;display:flex;flex-direction:column;gap:9vh}
+  .caso-bloco{display:grid;grid-template-columns:1.5fr 1fr;gap:3rem;align-items:center}
+  .caso-bloco.reverso{grid-template-columns:1fr 1.5fr}
+  .caso-bloco.reverso img{order:2}
+  .caso-bloco img{width:100%;border-radius:3px;display:block}
+  .caso-bloco p{color:#C9C3B6;font-size:1.05rem;line-height:1.6;max-width:36ch}
+  .caso-bloco.mobile-bloco{grid-template-columns:.6fr 1fr}
+  .caso-bloco.mobile-bloco img{max-width:280px;justify-self:center}
+  @media (max-width:760px){
+    .caso-bloco,.caso-bloco.reverso,.caso-bloco.mobile-bloco{grid-template-columns:1fr}
+    .caso-bloco.reverso img{order:0}
+    .caso-bloco.mobile-bloco img{max-width:220px}
+  }
+
   /* ---------- 5. MANIFESTO ---------- */
   .manifesto{background:#E7E4E8}
   .manifesto-grid{display:grid;grid-template-columns:1fr 1.5fr;gap:4rem;align-items:end}
@@ -185,14 +213,13 @@
   <div class="wrap">
     <div class="eyebrow reveal">Trabalhos</div>
     <div class="trabalhos-list">
-      <a class="obra reveal" href="https://corretaarquitetura.vercel.app/" target="_blank" rel="noopener"
-         data-preview="assets/preview-correta.jpg">
+      <div class="obra reveal caso-trigger" data-case="caso-correta">
         <div>
           <h3>Correta Arquitetura <span class="seta">↗</span></h3>
           <p>Identidade digital para um escritório de arquitetura. O portfólio apresentado com a mesma intenção dos projetos que ele guarda.</p>
         </div>
         <span class="tag">Arquitetura</span>
-      </a>
+      </div>
       <a class="obra reveal" href="https://ibirav2-index-html-p8mdwl0n8-andersonaelio1-2927s-projects.vercel.app/" target="_blank" rel="noopener"
          data-preview="assets/preview-ibiraquera.jpg">
         <div>
@@ -201,6 +228,34 @@
         </div>
         <span class="tag">Imobiliária</span>
       </a>
+    </div>
+  </div>
+</section>
+
+<!-- CASO — Correta Arquitetura -->
+<section class="caso" id="caso-correta">
+  <figure class="caso-cover">
+    <img src="assets/case-correta-cover.jpg" alt="Casa projetada pela Correta Arquitetura">
+    <figcaption>
+      <span class="eyebrow" style="color:#D8CBB0">Arquitetura + Engenharia · Florianópolis/SC</span>
+      <h3>Correta Arquitetura</h3>
+      <p>Projetos autorais para o litoral catarinense.</p>
+      <a href="https://corretaarquitetura.vercel.app/" target="_blank" rel="noopener" class="caso-link">Visitar site ↗</a>
+    </figcaption>
+  </figure>
+
+  <div class="wrap caso-blocos">
+    <div class="caso-bloco reveal">
+      <img src="assets/case-correta-hero.jpg" alt="Hero do site Correta, com anotações sobre os materiais do projeto">
+      <p>O hero recebe o render principal em tela cheia, com pequenas marcações flutuantes sobre vidro, madeira e concreto. Quem chega entende o projeto antes de rolar a página.</p>
+    </div>
+    <div class="caso-bloco reveal reverso">
+      <img src="assets/case-correta-projetos.jpg" alt="Página de projetos com imagem grande e lista lateral">
+      <p>Na página de projetos, uma imagem grande domina o centro e a lista fica quieta ao lado. Cada projeto pode ser visto por completo antes de qualquer filtro ou categoria.</p>
+    </div>
+    <div class="caso-bloco reveal mobile-bloco">
+      <img src="assets/case-correta-mobile.jpg" alt="Versão mobile do site, com categorias em blocos grandes">
+      <p>No celular a navegação muda de grade para categoria. Arquitetura e Interiores viram dois blocos únicos, grandes o bastante pro toque, sem perder a atmosfera escura do desktop.</p>
     </div>
   </div>
 </section>
@@ -279,6 +334,17 @@
       link.addEventListener('mouseleave', () => preview.classList.remove('show'));
     });
   }
+
+  // CASO: expande o estudo de caso completo ao clicar na linha do projeto
+  document.querySelectorAll('.caso-trigger').forEach(trigger => {
+    trigger.addEventListener('click', () => {
+      const caso = document.getElementById(trigger.dataset.case);
+      if (!caso) return;
+      caso.classList.add('open');
+      caso.querySelectorAll('.reveal').forEach(el => io.observe(el));
+      caso.scrollIntoView({behavior:'smooth', block:'start'});
+    });
+  });
 </script>
 </body>
 </html>
