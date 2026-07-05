@@ -100,9 +100,8 @@
     .port-card{aspect-ratio:16/11}
   }
 
-  /* ---------- CASO (case study expandido) ---------- */
-  .caso{display:none;background:var(--hero-bg)}
-  .caso.open{display:block}
+  /* ---------- CASO (case study) ---------- */
+  .caso{background:var(--hero-bg)}
   .caso-cover{position:relative;line-height:0}
   .caso-cover img{width:100%;max-height:78vh;object-fit:cover;display:block}
   .caso-cover::after{content:'';position:absolute;inset:0;
@@ -224,7 +223,7 @@
         <div class="port-text">
           <span class="port-tag">Arquitetura</span>
           <h3>Correta Arquitetura</h3>
-          <span class="hint">Ver estudo de caso ↗</span>
+          <span class="hint">Ver estudo de caso ↓</span>
         </div>
       </div>
       <div class="port-card reveal caso-trigger" data-case="caso-ibiraquera"
@@ -233,7 +232,7 @@
         <div class="port-text">
           <span class="port-tag">Imobiliária</span>
           <h3>Ibiraquera Home</h3>
-          <span class="hint">Ver estudo de caso ↗</span>
+          <span class="hint">Ver estudo de caso ↓</span>
         </div>
       </div>
     </div>
@@ -363,14 +362,11 @@
   }), {threshold:.18});
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
-  // CASO: expande o estudo de caso completo ao clicar no card
+  // TRABALHOS: clique no card rola suavemente até o case (já visível na página)
   document.querySelectorAll('.caso-trigger').forEach(trigger => {
     trigger.addEventListener('click', () => {
       const caso = document.getElementById(trigger.dataset.case);
-      if (!caso) return;
-      caso.classList.add('open');
-      caso.querySelectorAll('.reveal').forEach(el => io.observe(el));
-      caso.scrollIntoView({behavior:'smooth', block:'start'});
+      if (caso) caso.scrollIntoView({behavior:'smooth', block:'start'});
     });
   });
 </script>
