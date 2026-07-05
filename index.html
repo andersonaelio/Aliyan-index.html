@@ -84,13 +84,17 @@
   .obra h3{font-family:var(--disp);font-weight:400;
       font-size:clamp(1.7rem,3.2vw,2.5rem);margin-bottom:.9rem;
       transition:color .3s ease}
-  .obra .seta{display:inline-block;font-size:.7em;opacity:0;transform:translate(-6px,2px);
-      transition:opacity .3s ease,transform .3s ease}
+  .obra .seta{display:inline-block;font-size:.7em;opacity:.4;transform:translate(-4px,2px);
+      transition:opacity .3s ease,transform .3s ease;color:var(--muted)}
   .obra:hover h3{color:var(--amber)}
-  .obra:hover .seta{opacity:1;transform:translate(2px,2px)}
+  .obra:hover .seta{opacity:1;transform:translate(2px,2px);color:var(--amber)}
   .obra p{color:var(--muted);max-width:46ch}
   .obra .tag{font-size:.72rem;letter-spacing:.24em;text-transform:uppercase;
       color:var(--amber);justify-self:end;align-self:start;white-space:nowrap}
+  .tag-group{display:flex;flex-direction:column;align-items:flex-end;gap:.4rem;
+      justify-self:end;align-self:start}
+  .tag-group .tag{justify-self:auto}
+  .hint{font-size:.68rem;color:var(--muted);white-space:nowrap}
 
   .cursor-preview{position:fixed;top:0;left:0;width:280px;height:190px;
       pointer-events:none;z-index:60;border-radius:4px;overflow:hidden;
@@ -108,7 +112,8 @@
   .caso-cover img{width:100%;max-height:78vh;object-fit:cover;display:block}
   .caso-cover::after{content:'';position:absolute;inset:0;
       background:linear-gradient(to top,rgba(11,9,8,.82) 0%,rgba(11,9,8,.15) 45%,rgba(11,9,8,.05) 100%)}
-  .caso-cover figcaption{position:absolute;left:6vw;right:6vw;bottom:2.6rem;z-index:2}
+  .caso-cover figcaption{position:absolute;left:6vw;right:6vw;bottom:2.6rem;z-index:2;line-height:1.3}
+  .caso-cover .eyebrow{margin-bottom:.7rem}
   .caso-cover h3{font-family:var(--disp);font-weight:300;color:#F5EFE4;
       font-size:clamp(2rem,5vw,3.6rem);margin:.6rem 0 .5rem}
   .caso-cover p{color:#D8CBB0;font-size:1.05rem;margin-bottom:1.2rem}
@@ -218,7 +223,10 @@
           <h3>Correta Arquitetura <span class="seta">↗</span></h3>
           <p>Identidade digital para um escritório de arquitetura. O portfólio apresentado com a mesma intenção dos projetos que ele guarda.</p>
         </div>
-        <span class="tag">Arquitetura</span>
+        <span class="tag-group">
+          <span class="tag">Arquitetura</span>
+          <span class="hint">Ver estudo de caso</span>
+        </span>
       </div>
       <a class="obra reveal" href="https://ibirav2-index-html-p8mdwl0n8-andersonaelio1-2927s-projects.vercel.app/" target="_blank" rel="noopener"
          data-preview="assets/preview-ibiraquera.jpg">
