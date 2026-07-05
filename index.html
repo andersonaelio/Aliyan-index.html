@@ -149,7 +149,7 @@
 
   /* ---------- 5. MANIFESTO ---------- */
   .manifesto{background:#E7E4E8}
-  .manifesto-grid{display:grid;grid-template-columns:1fr 1.5fr;gap:4rem;align-items:end}
+  .manifesto-grid{display:grid;grid-template-columns:1.2fr 1.5fr;gap:2.4rem;align-items:center}
   .retrato{order:0}
   .retrato img{width:100%;border-radius:2px;display:block}
   .retrato figcaption{font-size:.72rem;letter-spacing:.24em;text-transform:uppercase;
@@ -157,8 +157,10 @@
   .manifesto p{font-family:var(--disp);font-weight:300;
       font-size:clamp(1.4rem,2.6vw,2rem);line-height:1.42;
       max-width:22ch;margin-bottom:2.2rem;letter-spacing:-.005em}
-  .manifesto .assina{font-family:var(--body);font-size:1rem;font-weight:400;
-      color:var(--muted);max-width:48ch;margin-top:3rem}
+  .manifesto .assina{font-family:var(--disp);font-weight:400;
+      font-size:clamp(1.2rem,2.2vw,1.6rem);line-height:1.5;
+      color:var(--ink);max-width:46ch;margin-top:3rem;
+      padding-top:2rem;border-top:1px solid var(--line)}
   @media (max-width:680px){.manifesto-grid{grid-template-columns:1fr;gap:2.6rem}}
 
   /* ---------- 6. CONTATO ---------- */
