@@ -86,22 +86,19 @@
   .obra .tag{font-size:.72rem;letter-spacing:.24em;text-transform:uppercase;
       color:var(--amber);justify-self:end;align-self:start;white-space:nowrap}
 
-  /* ---------- 4b. PAUSA ---------- */
-  .pausa{padding:0;background:var(--hero-bg);line-height:0}
-  .pausa img{width:100%;max-height:82vh;object-fit:cover;display:block}
-
   /* ---------- 5. MANIFESTO ---------- */
-  .manifesto{background:#DFDCD4}
-  .manifesto-grid{display:grid;grid-template-columns:1.5fr 1fr;gap:4rem;align-items:end}
+  .manifesto{background:#E7E4E8}
+  .manifesto-grid{display:grid;grid-template-columns:1fr 1.5fr;gap:4rem;align-items:end}
+  .retrato{order:0}
   .retrato img{width:100%;border-radius:2px;display:block}
   .retrato figcaption{font-size:.72rem;letter-spacing:.24em;text-transform:uppercase;
       color:var(--muted);margin-top:1rem}
-  @media (max-width:680px){.manifesto-grid{grid-template-columns:1fr;gap:2.6rem}}
   .manifesto p{font-family:var(--disp);font-weight:300;
-      font-size:clamp(1.15rem,2.1vw,1.55rem);line-height:1.6;
-      max-width:34ch;margin-bottom:2.4rem}
+      font-size:clamp(1.4rem,2.6vw,2rem);line-height:1.42;
+      max-width:22ch;margin-bottom:2.2rem;letter-spacing:-.005em}
   .manifesto .assina{font-family:var(--body);font-size:1rem;font-weight:400;
-      color:var(--muted);max-width:52ch;margin-top:3.4rem}
+      color:var(--muted);max-width:48ch;margin-top:3rem}
+  @media (max-width:680px){.manifesto-grid{grid-template-columns:1fr;gap:2.6rem}}
 
   /* ---------- 6. CONTATO ---------- */
   .contato{text-align:center;padding:22vh 0}
@@ -189,14 +186,13 @@
   </div>
 </section>
 
-<!-- 4b. PAUSA — detalhe (mão) -->
-<section class="pausa" aria-hidden="true">
-  <img src="assets/mao.jpg" alt="">
-</section>
-
 <!-- 5. MANIFESTO -->
 <section class="manifesto">
   <div class="wrap manifesto-grid">
+    <figure class="retrato reveal">
+      <img src="assets/anderson.jpg" alt="Anderson Aelio">
+      <figcaption>Anderson Aelio</figcaption>
+    </figure>
     <div>
     <div class="eyebrow reveal">O estúdio</div>
     <p class="reveal">Todo projeto começa antes da tela — na escuta, no entendimento do que precisa existir.</p>
@@ -204,10 +200,6 @@
     <p class="reveal">No fim, o que se entrega não é um site. É a presença que o trabalho merece.</p>
     <p class="assina reveal">Aliyan é o estúdio de Anderson Aelio — um jeito próprio de construir, nascido de quem aprendeu a fazer tudo de outro modo.</p>
     </div>
-    <figure class="retrato reveal">
-      <img src="assets/anderson.jpg" alt="Anderson Aelio">
-      <figcaption>Anderson Aelio</figcaption>
-    </figure>
   </div>
 </section>
 
