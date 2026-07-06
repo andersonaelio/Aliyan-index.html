@@ -407,9 +407,14 @@
   }), {threshold:.18});
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
-  // NAV: aparece depois do hero
+  // NAV: aparece quando a Hero sai de vista (mais confiável que altura fixa)
   const nav = document.getElementById('nav');
-  const heroH = () => hero.offsetHeight;
+  const navIo = new IntersectionObserver(
+    ([entry]) => nav.classList.toggle('on', !entry.isIntersecting),
+    {threshold:0, rootMargin:'-80% 0px 0px 0px'}
+  );
+  navIo.observe(hero);
+
   // PARALLAX sutil nos covers dos cases
   const covers = [...document.querySelectorAll('.caso-cover img')];
   let ticking = false;
@@ -417,7 +422,6 @@
     if (ticking) return;
     ticking = true;
     requestAnimationFrame(() => {
-      nav.classList.toggle('on', window.scrollY > heroH() * 0.85);
       if (!reduced) {
         const vh = window.innerHeight;
         covers.forEach(img => {
