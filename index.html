@@ -77,11 +77,22 @@
   section{padding:17vh 0}
   .eyebrow{font-size:.72rem;letter-spacing:.28em;text-transform:uppercase;
       color:var(--muted);margin-bottom:2.6rem}
-  .trabalhos-label{position:relative;margin-bottom:0;padding-bottom:5rem}
-  .trabalhos-label::after{content:'';position:absolute;left:2px;top:2rem;
+  .estudio-label{font-family:var(--disp);font-weight:400;font-size:.95rem;
+      letter-spacing:.04em;color:var(--muted);margin-bottom:2.6rem;
+      display:flex;align-items:baseline;gap:.65rem}
+  .estudio-num{font-family:var(--disp);font-weight:300;font-size:.95rem;
+      color:var(--amber);letter-spacing:.05em}
+  .trabalhos-title{position:relative;margin-bottom:0;padding-bottom:5rem;
+      font-family:var(--disp);font-weight:300;color:var(--ink);
+      font-size:clamp(1.9rem,4.2vw,3.1rem);letter-spacing:-.005em;
+      display:flex;align-items:baseline;gap:.9rem;flex-wrap:wrap}
+  .trabalhos-title .count{font-family:var(--body);font-weight:400;
+      font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;
+      color:var(--amber)}
+  .trabalhos-title::after{content:'';position:absolute;left:2px;top:4.4rem;
       width:1px;height:0;background:var(--amber);opacity:.7;
       transition:height 1.1s cubic-bezier(.77,0,.18,1) .3s}
-  .trabalhos-label.in::after{height:3.4rem}
+  .trabalhos-title.in::after{height:3.4rem}
   .reveal{opacity:0;transform:translateY(22px);
       transition:opacity 1.1s ease,transform 1.1s ease}
   .reveal.in{opacity:1;transform:none}
@@ -274,7 +285,7 @@
 <!-- 4. TRABALHOS -->
 <section style="padding-top:0;padding-bottom:0" id="trabalhos">
   <div class="wrap">
-    <div class="eyebrow reveal trabalhos-label">Trabalhos</div>
+    <div class="trabalhos-title reveal">Trabalhos<span class="count">— 02 estudos de caso</span></div>
   </div>
 </section>
 
@@ -322,7 +333,7 @@
       <figcaption>Anderson Aelio</figcaption>
     </figure>
     <div>
-    <div class="eyebrow reveal">O estúdio</div>
+    <div class="estudio-label reveal"><span class="estudio-num">04</span>O estúdio</div>
     <p class="reveal">Todo projeto começa antes da tela, na escuta, no entendimento do que precisa existir.</p>
     <p class="reveal">Depois vem a estrutura: cada decisão de luz, tipo e ritmo com uma razão de ser.</p>
     <p class="reveal">No fim, o que se entrega não é um site. É a presença que o trabalho merece.</p>
